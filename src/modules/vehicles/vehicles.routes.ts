@@ -5,5 +5,13 @@ const router = express.Router()
 
 router.get('/', vehiclesControllers.getAllVehicles)
 
+router.get('/:vehicleId', vehiclesControllers.getAllVehicles)
+
+router.post('/', vehiclesControllers.postVehicles)
+
+router.put('/:vehicleId', vehiclesControllers.postVehicles)
+
+router.delete('/:vehicleId', vehiclesControllers.postVehicles)
+
 
 export const vehiclesRoutes = router;

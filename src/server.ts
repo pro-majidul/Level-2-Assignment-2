@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import initDB from './config/db'
-import { userRoutes } from './modules/users/users.route'
+// import { userRoutes } from './modules/users/users.route'
 import { vehiclesRoutes } from './modules/vehicles/vehicles.routes'
 
 const app = express()
@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 // database
 initDB()
 
-app.use('/api/v1/users', userRoutes);
+// app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/vehicles', vehiclesRoutes)
 
 app.listen(port, () => {
