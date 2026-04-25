@@ -1,3 +1,9 @@
+import { Request, Response } from "express"
 
+const createUser = (req: Request, res: Response) => {
 
-export const userController = 'name'
+}
+
+export const userController = {
+    createUser,
+}
