@@ -7,7 +7,7 @@ const getAllVehicles = async (req: Request, res: Response) => {
         const result = await vehicleServices.getAllVehicles();
         res.status(200).json({
             success: true,
-            message: "Users retrieved successfully",
+            message: "Vehicles retrieved successfully",
             data: result.rows,
         });
     } catch (error: any) {
@@ -20,7 +20,31 @@ const getAllVehicles = async (req: Request, res: Response) => {
 }
 
 const getSingleVehicles = async (req: Request, res: Response) => {
-    console.log('getSingleVehicles')
+    const { vehicleId } = req.params;
+    try {
+        const result = await pool.query(`SELECT * FROM vehicles WHERE id = $1`, [vehicleId as string])
+        if (result.rows.length === 0) {
+            res.status(404).json({
+                success: false,
+                message: "Vehicles not found",
+            });
+        } else {
+            res.status(200).json({
+                success: true,
+                message: "Vehicles fetched successfully",
+                data: result.rows[0],
+            });
+        }
+
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+
+
+
 }
 
 const postVehicles = async (req: Request, res: Response) => {
@@ -29,7 +53,7 @@ const postVehicles = async (req: Request, res: Response) => {
         // console.log(result)
         res.status(201).json({
             success: true,
-            message: "Data Instered Successfully",
+            message: "Vehicles Data Instered Successfully",
             data: result.rows[0],
         });
     } catch (error: any) {

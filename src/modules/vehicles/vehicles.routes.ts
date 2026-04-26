@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', vehiclesControllers.getAllVehicles)
 
-router.get('/:vehicleId', vehiclesControllers.getAllVehicles)
+router.get('/:vehicleId', vehiclesControllers.getSingleVehicles)
 
 router.post('/', vehiclesControllers.postVehicles)
 
