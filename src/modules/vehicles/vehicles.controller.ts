@@ -22,7 +22,7 @@ const getAllVehicles = async (req: Request, res: Response) => {
 const getSingleVehicles = async (req: Request, res: Response) => {
     const { vehicleId } = req.params;
     try {
-        const result = await pool.query(`SELECT * FROM vehicles WHERE id = $1`, [vehicleId as string])
+        const result = await vehicleServices.getSingleVehicles(req.params.vehicleId as string)
         if (result.rows.length === 0) {
             res.status(404).json({
                 success: false,
