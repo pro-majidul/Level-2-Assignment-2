@@ -66,7 +66,31 @@ const postVehicles = async (req: Request, res: Response) => {
 }
 
 const updateVehicles = async (req: Request, res: Response) => {
-    console.log('updateVehicles')
+
+    const { vehicle_name, type, registration_number, daily_rent_price, availability_status } = req.body;
+    const { vehicleId } = req.params
+
+    try {
+        const result = await pool.query(`UPDATE vehicles SET vehicle_name = $1, type = $2 , registration_number = $3,daily_rent_price = $4, availability_status = $5 WHERE id =$6 RETURNING *`, [vehicle_name, type, registration_number, daily_rent_price, availability_status, vehicleId])
+
+        if (result.rows.length === 0) {
+            res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        } else {
+            res.status(200).json({
+                success: true,
+                message: "User updated successfully",
+                data: result.rows[0],
+            });
+        }
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
 }
 
 const deleteVehicles = async (req: Request, res: Response) => {
