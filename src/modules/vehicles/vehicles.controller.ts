@@ -26,6 +26,7 @@ const getSingleVehicles = async (req: Request, res: Response) => {
 const postVehicles = async (req: Request, res: Response) => {
     try {
         const result = await vehicleServices.postVehicles(req.body)
+        // console.log(result)
         res.status(201).json({
             success: true,
             message: "Data Instered Successfully",
