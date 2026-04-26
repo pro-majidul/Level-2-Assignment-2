@@ -71,7 +71,7 @@ const updateVehicles = async (req: Request, res: Response) => {
     const { vehicleId } = req.params
 
     try {
-        const result = await pool.query(`UPDATE vehicles SET vehicle_name = $1, type = $2 , registration_number = $3,daily_rent_price = $4, availability_status = $5 WHERE id =$6 RETURNING *`, [vehicle_name, type, registration_number, daily_rent_price, availability_status, vehicleId])
+        const result = await vehicleServices.updateVehicles(vehicle_name, type, registration_number, daily_rent_price, availability_status, vehicleId as string)
 
         if (result.rows.length === 0) {
             res.status(404).json({
