@@ -21,5 +21,9 @@ const updateUser = async (name: string, email: string, password: string, Phone: 
     return result
 }
 
+const deleteUser = async (userId: string) => {
+    const result = await pool.query(`DELETE FROM users WHERE id= $1`, [userId])
+    return result
+}
 
-export const userService = { getAllUsers, createUser, updateUser }
+export const userService = { getAllUsers, createUser, updateUser, deleteUser }
