@@ -76,12 +76,12 @@ const updateVehicles = async (req: Request, res: Response) => {
         if (result.rows.length === 0) {
             res.status(404).json({
                 success: false,
-                message: "User not found",
+                message: "Vehicles not found",
             });
         } else {
             res.status(200).json({
                 success: true,
-                message: "User updated successfully",
+                message: "Vehicles updated successfully",
                 data: result.rows[0],
             });
         }

@@ -46,6 +46,37 @@ const createUser = async (req: Request, res: Response) => {
 
 }
 
+
+const updateUser = async (req: Request, res: Response) => {
+    const { name, email, password, Phone, role } = req.body;
+    const { userId } = req.params
+    try {
+
+        const result = await userService.updateUser(name, email, password, Phone, role, userId as string)
+        if (result.rows.length === 0) {
+            res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        } else {
+            res.status(200).json({
+                success: true,
+                message: "User updated successfully",
+                data: result.rows[0],
+            });
+        }
+
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+            details: error,
+        });
+    }
+
+}
+
+
 export const userController = {
-    createUser, getAllUsers
+    createUser, getAllUsers, updateUser
 }
