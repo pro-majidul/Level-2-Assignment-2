@@ -14,7 +14,7 @@ const getAllVehicles = async (req: Request, res: Response) => {
         res.status(500).json({
             success: false,
             message: error.message,
-            datails: error,
+            details: error,
         })
     }
 }
@@ -60,7 +60,7 @@ const postVehicles = async (req: Request, res: Response) => {
         res.status(500).json({
             success: false,
             message: error.message,
-            datails: error,
+            details: error,
         })
     }
 }

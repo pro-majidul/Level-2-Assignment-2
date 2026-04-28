@@ -1,9 +1,8 @@
 import express, { Request, Response } from 'express'
 import initDB from './config/db'
-// import { userRoutes } from './modules/users/users.route'
+import { userRoutes } from './modules/users/users.route'
 import { vehiclesRoutes } from './modules/vehicles/vehicles.routes'
 import config from './config'
-import { userRoutes } from './modules/users/users.route'
 
 const app = express()
 const port = config.port
@@ -14,9 +13,8 @@ app.use(express.urlencoded({ extended: true }))
 // database
 initDB()
 
-// app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/vehicles', vehiclesRoutes)
-app.use('/api/v1/users', userRoutes)
 
 app.get('/', (req: Request, res: Response) => {
     console.log(`server is running on port${port}`)

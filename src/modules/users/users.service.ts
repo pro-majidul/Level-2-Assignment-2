@@ -6,5 +6,13 @@ const getAllUsers = async () => {
 }
 
 
+const createUser = async (payload: Record<string, unknown>) => {
+    const { name, email, password, Phone, role } = payload;
 
-export const userService = { getAllUsers }
+    const result = await pool.query(`INSERT INTO users( name, email, password, Phone, role) VALUES( $1, $2, $3, $4 , $5) RETURNING *`, [name, email, password, Phone, role])
+
+    return result
+}
+
+
+export const userService = { getAllUsers, createUser }
